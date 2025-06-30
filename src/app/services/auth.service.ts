@@ -24,10 +24,11 @@ export class AuthService {
         // Validación simple (en producción esto sería una llamada HTTP)
         if (email && password) {
           const user: UserModel = {
-            id: '1',
+            id: 1,
             name: 'Usuario Demo',
             email: email,
-            role: 'Cliente'
+            role: 'Cliente',
+            createdAt: new Date()
           };
           
           localStorage.setItem('currentUser', JSON.stringify(user));
@@ -46,10 +47,11 @@ export class AuthService {
       setTimeout(() => {
         // Simular registro exitoso
         const user: UserModel = {
-          id: Date.now().toString(),
+          id: Date.now(),
           name: userData.name,
           email: userData.email,
-          role: userData.role
+          role: userData.role,
+          createdAt: new Date()
         };
         
         localStorage.setItem('currentUser', JSON.stringify(user));

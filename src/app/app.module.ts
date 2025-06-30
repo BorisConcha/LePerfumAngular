@@ -13,7 +13,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeroSectionComponent } from './components/hero-section/hero-section.component';
 import { FeaturesSectionComponent } from './components/features-section/features-section.component';
 import { ProductsSectionComponent } from './components/products-section/products-section.component';
-import { ProductCardComponent } from './components/product-card/product-card.component';
+import { PerfumesCardComponent } from './components/product-card/product-card.component';
 import { BrandsSectionComponent } from './components/brands-section/brands-section.component';
 import { BrandCardComponent } from './components/brand-card/brand-card.component';
 import { FiltersComponent } from './components/filters/filters.component';
@@ -49,7 +49,7 @@ import { CapitalizePipe } from './pipes/capitalize.pipe';
     HeroSectionComponent,
     FeaturesSectionComponent,
     ProductsSectionComponent,
-    ProductCardComponent,
+    PerfumesCardComponent,
     BrandsSectionComponent,
     BrandCardComponent,
     FiltersComponent,

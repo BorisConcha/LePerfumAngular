@@ -111,7 +111,7 @@ export class ProductsComponent implements OnInit {
     this.perfumeService.getAllProducts().subscribe({
       next: (perfumes) => {
         this.perfumes = perfumes;
-        this.filteredProducts = perfumes;
+        this.filteredPerfumes = perfumes;
         this.loading = false;
       },
       error: (error) => {

@@ -1,6 +1,6 @@
 
 import { Component, Input } from '@angular/core';
-import { Product } from '../../models/product.model';
+import { PerfumeModel } from '../../models/perfume.model';
 
 @Component({
   selector: 'app-product-card',
@@ -24,11 +24,11 @@ import { Product } from '../../models/product.model';
   `,
   styleUrls: ['./product-card.component.css']
 })
-export class ProductCardComponent {
-  @Input() product!: Product;
+export class PerfumesCardComponent {
+  @Input() perfume!: PerfumeModel;
 
   viewDetails(): void {
-    console.log('Viewing details for:', this.product.name);
+    console.log('Viendo los detalles del perfume:', this.perfume.name);
     // Implementar navegación a detalles del producto
   }
 
