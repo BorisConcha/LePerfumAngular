@@ -1,1 +1,23 @@
-<p>product-card works!</p>
+<div class="product-card">
+  <div class="product-image">
+    <img [src]="product.image" [alt]="product.name" />
+  </div>
+  <div class="product-info">
+    <h5 class="product-title">{{ product.name }}</h5>
+    <p class="product-brand">{{ product.brand }}</p>
+    <div class="product-price">{{ formatPrice(product.price) }}</div>
+    <div class="product-actions">
+      <button class="btn btn-primary btn-sm" (click)="onProductClick()">
+        Ver Detalles
+      </button>
+      <div class="product-rating">
+        <i 
+          *ngFor="let star of getRatingArray()" 
+          class="fas fa-star"
+          [class.text-warning]="star <= product.rating"
+          [class.text-muted]="star > product.rating">
+        </i>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,33 @@
-<p>products-section works!</p>
+<section id="products" class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-5 text-gradient">Productos Destacados</h2>
+    
+    <!-- FILTROS -->
+    <app-filters (filtersChange)="onFiltersChange($event)"></app-filters>
+
+    <!-- Loading Spinner -->
+    <app-loading-spinner 
+      *ngIf="isLoading" 
+      message="Cargando productos...">
+    </app-loading-spinner>
+
+    <!-- LISTA DE PRODUCTOS -->
+    <div class="row" *ngIf="!isLoading">
+      <div 
+        class="col-xl-3 col-lg-4 col-md-6 col-12" 
+        *ngFor="let product of filteredProducts; trackBy: trackByProductId">
+        <app-product-card 
+          [product]="product"
+          (productClick)="onProductClick($event)">
+        </app-product-card>
+      </div>
+    </div>
+
+    <!-- No results message -->
+    <div class="text-center py-5" *ngIf="!isLoading && filteredProducts.length === 0">
+      <i class="fas fa-search fa-3x text-muted mb-3"></i>
+      <h4 class="text-muted">No se encontraron productos</h4>
+      <p class="text-muted">Intenta ajustar los filtros de búsqueda</p>
+    </div>
+  </div>
+</section>

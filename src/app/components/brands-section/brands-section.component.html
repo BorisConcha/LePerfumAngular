@@ -1,1 +1,80 @@
-<p>brands-section works!</p>
+<section id="brands" class="brands-section py-5">
+  <div class="container">
+    <div class="brands-header text-center mb-5">
+      <h2 class="brands-title">Marcas Premium</h2>
+      <p class="brands-subtitle">Descubre las mejores marcas de perfumes del mundo</p>
+    </div>
+
+    <!-- CATEGORIA DE MARCAS -->
+    <div class="brand-categories mb-4">
+      <div class="category-filters text-center">
+        <button 
+          class="category-btn" 
+          [class.active]="activeCategory === 'all'"
+          (click)="filterByCategory('all')">
+          Todas
+        </button>
+        <button 
+          class="category-btn" 
+          [class.active]="activeCategory === 'luxury'"
+          (click)="filterByCategory('luxury')">
+          Lujo
+        </button>
+        <button 
+          class="category-btn" 
+          [class.active]="activeCategory === 'designer'"
+          (click)="filterByCategory('designer')">
+          Diseñador
+        </button>
+        <button 
+          class="category-btn" 
+          [class.active]="activeCategory === 'niche'"
+          (click)="filterByCategory('niche')">
+          Nicho
+        </button>
+      </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
+    <!-- MARCAS GRID -->
+    <div class="brands-grid" *ngIf="!isLoading">
+      <app-brand-card 
+        *ngFor="let brand of filteredBrands; trackBy: trackByBrandId"
+        [brand]="brand"
+        (brandClick)="onBrandClick($event)">
+      </app-brand-card>
+    </div>
+
+    <!-- ESTADISTICAS DE LAS MARCAS -->
+    <div class="brand-stats mt-5">
+      <div class="row text-center">
+        <div class="col-md-3 col-6">
+          <div class="stat-card">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Marcas Premium</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-card">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Fragancias</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-card">
+            <div class="stat-number">15+</div>
+            <div class="stat-label">Países</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-card">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Auténticas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

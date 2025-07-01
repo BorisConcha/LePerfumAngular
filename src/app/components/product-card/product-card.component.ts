@@ -1,45 +1,39 @@
 
-import { Component, Input } from '@angular/core';
-import { PerfumeModel } from '../../models/perfume.model';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
+export interface Product {
+  id: string;
+  name: string;
+  brand: string;
+  price: number;
+  image: string;
+  rating: number;
+  type: string;
+  gender: string;
+}
 
 @Component({
   selector: 'app-product-card',
-  template: `
-    <div class="product-card">
-      <div class="product-image">
-        <img [src]="product.image" [alt]="product.name" />
-      </div>
-      <div class="product-info">
-        <h5 class="product-title">{{ product.name }}</h5>
-        <p class="product-brand">{{ product.brand }}</p>
-        <div class="product-price">{{ product.price | currency:'CLP':'symbol':'1.0-0' }}</div>
-        <div class="product-actions">
-          <button class="btn btn-primary btn-sm" (click)="viewDetails()">Ver Detalles</button>
-          <div class="product-rating">
-            <i class="fas fa-star" *ngFor="let star of getStars(product.rating)" [class.far]="!star"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  `,
-  styleUrls: ['./product-card.component.css']
+  templateUrl: './product-card.component.html',
+  styleUrls: ['./product-card.component.scss']
 })
-export class PerfumesCardComponent {
-  @Input() perfume!: PerfumeModel;
+export class ProductCardComponent {
+  @Input() product!: Product;
+  @Output() productClick = new EventEmitter<Product>();
 
-  viewDetails(): void {
-    console.log('Viendo los detalles del perfume:', this.perfume.name);
-    // Implementar navegación a detalles del producto
+  onProductClick(): void {
+    this.productClick.emit(this.product);
   }
 
-  getStars(rating: number): boolean[] {
-    const stars: boolean[] = [];
-    const fullStars = Math.floor(rating);
-    
-    for (let i = 0; i < 5; i++) {
-      stars.push(i < fullStars);
-    }
-    
-    return stars;
+  getRatingArray(): number[] {
+    return Array(5).fill(0).map((_, i) => i + 1);
+  }
+
+  formatPrice(price: number): string {
+    return new Intl.NumberFormat('es-CL', {
+      style: 'currency',
+      currency: 'CLP',
+      minimumFractionDigits: 0
+    }).format(price);
   }
 }

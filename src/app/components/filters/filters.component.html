@@ -1,1 +1,54 @@
-<p>filters works!</p>
+<div class="filter-section">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5>Filtros</h5>
+    <button class="btn btn-sm btn-outline-secondary" (click)="clearFilters()">
+      <i class="fas fa-times me-1"></i>Limpiar
+    </button>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 mb-2">
+      <select 
+        class="form-select" 
+        [(ngModel)]="filters.brand" 
+        (change)="onFilterChange()">
+        <option *ngFor="let brand of brands" [value]="brand.value">
+          {{ brand.label }}
+        </option>
+      </select>
+    </div>
+    
+    <div class="col-md-3 mb-2">
+      <select 
+        class="form-select" 
+        [(ngModel)]="filters.type" 
+        (change)="onFilterChange()">
+        <option *ngFor="let type of types" [value]="type.value">
+          {{ type.label }}
+        </option>
+      </select>
+    </div>
+    
+    <div class="col-md-3 mb-2">
+      <select 
+        class="form-select" 
+        [(ngModel)]="filters.gender" 
+        (change)="onFilterChange()">
+        <option *ngFor="let gender of genders" [value]="gender.value">
+          {{ gender.label }}
+        </option>
+      </select>
+    </div>
+    
+    <div class="col-md-3 mb-2">
+      <select 
+        class="form-select" 
+        [(ngModel)]="filters.priceRange" 
+        (change)="onFilterChange()">
+        <option *ngFor="let range of priceRanges" [value]="range.value">
+          {{ range.label }}
+        </option>
+      </select>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,16 @@
-<p>brand-card works!</p>
+<div class="brand-card" (click)="onBrandClick()">
+  <div class="brand-logo">
+    <img [src]="brand.logo" [alt]="brand.name" />
+  </div>
+  <div class="brand-info">
+    <h5 class="brand-name">{{ brand.name }}</h5>
+    <p class="brand-category">{{ brand.category | titlecase }}</p>
+    <div class="brand-stats">
+      <span class="products-count">{{ brand.productsCount }} productos</span>
+      <span class="brand-country">{{ brand.country }}</span>
+    </div>
+  </div>
+  <div class="brand-overlay">
+    <button class="btn btn-primary">Ver Más</button>
+  </div>
+</div>

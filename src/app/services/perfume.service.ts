@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { PerfumeModel } from '../models/perfume.model';
 
 @Injectable({
@@ -12,7 +13,7 @@ export class PerfumeService {
 
   private perfumes: PerfumeModel[] = [
     {
-      id: '1',
+      id: 1,
       name: 'Chanel No. 5',
       brand: 'Chanel',
       price: 89990,
@@ -20,10 +21,11 @@ export class PerfumeService {
       rating: 5,
       type: 'Eau de Parfum',
       gender: 'Femenino',
-      description: 'El perfume más icónico de Chanel'
+      description: 'El perfume más icónico de Chanel',
+      available: true
     },
     {
-      id: '2',
+      id: 2,
       name: 'Sauvage',
       brand: 'Dior',
       price: 79990,
@@ -31,10 +33,11 @@ export class PerfumeService {
       rating: 4,
       type: 'Eau de Toilette',
       gender: 'Masculino',
-      description: 'Fragancia fresca y moderna de Dior'
+      description: 'Fragancia fresca y moderna de Dior',
+      available: true
     },
     {
-      id: '3',
+      id: 3,
       name: 'Eros',
       brand: 'Versace',
       price: 65990,
@@ -42,10 +45,11 @@ export class PerfumeService {
       rating: 5,
       type: 'Eau de Toilette',
       gender: 'Masculino',
-      description: 'Fragancia seductora y poderosa'
+      description: 'Fragancia seductora y poderosa',
+      available: true
     },
     {
-      id: '4',
+      id: 4,
       name: '1 Million',
       brand: 'Paco Rabanne',
       price: 55990,
@@ -53,7 +57,8 @@ export class PerfumeService {
       rating: 4,
       type: 'Eau de Toilette',
       gender: 'Masculino',
-      description: 'El aroma del éxito'
+      description: 'El aroma del éxito',
+      available: true
     }
   ];
 
@@ -67,7 +72,7 @@ export class PerfumeService {
     return of(this.perfumes.slice(0, 4)).pipe(delay(500));
   }
 
-  getPerfumeById(id: string): Observable<PerfumeModel | undefined> {
+  getPerfumeById(id: number): Observable<PerfumeModel | undefined> {
     const product = this.perfumes.find(p => p.id === id);
     return of(product).pipe(delay(300));
   }
